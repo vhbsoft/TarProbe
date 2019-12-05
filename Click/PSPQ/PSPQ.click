@@ -1,4 +1,4 @@
-// randomSPQ.click
+// PSPQ.click
 
 //output 0 is hihg, 1 is low
 ipclass :: IPClassifier(src udp port 0, src udp port 1, -);
