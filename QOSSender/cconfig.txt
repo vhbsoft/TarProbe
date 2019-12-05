@@ -1,0 +1,31 @@
+host 127.0.0.1   //default host
+port 55555   //default port
+set m  	//declare a variable m
+set n		// the variable name can't contain any of "[]/=," nor space 
+size   1024      //default packet size
+//seed 0    //use a fixed random seed, otherwise the seed is time(0)
+repeat m = [100, 200]    //repeat the following block for 100 to 200 times
+	size 1000   //overwrite the packet size to 1000
+	port 55556   // overwrite the port to 55556, which is the high priority port, the host will be the default
+end
+
+repeat 10 //repeat the following block for 10 times
+	repeat 1   //send 1 low priority packet
+		port 55555 //overwirte the port, the size and host will be the default
+	end
+	repeat n = [1,5] //send 1 to 5 high priority packets, also change the n
+		port 55556 //overwirte the port, the size and host will be the default
+	end
+end
+
+repeat 15 //repeat the following block for 10 times
+	repeat n   //send n low priority packet, the value of n is the current value of n
+		port 55555 //overwirte the port, the size and host will be the default
+	end
+	repeat n[] //send n high priority packets, the value is the sequence of n, loop back if exceed the boundary
+		port 55556 //overwirte the port, the size and host will be the default
+	end
+end
+//By nesting loops, you can send any sequence 
+//any line doesn't start with "host", "port", "size", "repeat", "set", "seed" or "end" will be ignored
+//the parameters will be in the "output.txt", so you can know the random values

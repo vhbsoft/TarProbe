@@ -1,0 +1,25 @@
+seed 1571594936
+repeat [143]
+	size 1000
+	port 55556
+end
+repeat 10
+	repeat 1	
+		size 1024
+		port 55555
+	end
+	repeat [1 2 2 1 2 2 3 4 1 3]	
+		size 1024
+		port 55556
+	end
+end
+repeat 15
+	repeat [3 3 3 3 3 3 3 3 3 3 3 3 3 3 3]	
+		size 1024
+		port 55555
+	end
+	repeat [1 2 2 1 2 2 3 4 1 3 1 2 2 1 2]	
+		size 1024
+		port 55556
+	end
+end
