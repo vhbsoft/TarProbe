@@ -17,7 +17,7 @@ RandomPacketClassifier::~RandomPacketClassifier()
 int
 RandomPacketClassifier::configure(Vector<String> &conf, ErrorHandler *errh)
 {
-    m_probability = std::stof(conf[0], 0);
+    m_probability = std::stof(conf[0].c_str(), 0);
     return 0;
 }
 

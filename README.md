@@ -1,3 +1,27 @@
+## Environment
+
+1. Tested environment: Ubuntu 20.04 with kernel 5.4.51
+2. Compiler flag should be set to `-std=c++11` for C++11
+
+## Does my code compile?
+
+1. Make sure that you have `click`'s include path (should be installed with `make install` when you compile click for the first time);
+2. This is just to check if your code actually compiles. This does not check if it will run correctly in the experiment. For example:
+```
+λ g++ -std=c++11 -Wall -I~/code/click/include Click/PSPQ/RandomPacketClassifier.cc                                                                     ─╯
+/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x24): undefined reference to `main'
+```
+This is good news, because it is complaining about can't find the entry point of your program (which should be Click itself, not your program).
+
+3. Alternatively, use an IDE that will tell you if you made obvious mistakes.
+
+## Integration with Click to run with Router
+
+1. Remember that we are writing "Elements" to be used with the Click router, and our configuration (for example, `Click/PSPQ/PSPQ.click`) will tell how Click should run our experiment.
+2. However, we must compile out Elements into Click itself. While Click's [FAQ](https://github.com/kohler/click/blob/master/FAQ) recommends that we put our elements into its own collection, it doesn't tell us how.
+3. I found that the best way to do so is to symlink the folder with our Elements' source code to the `elements/local` folder (for example, `ln -s Click/PSPQ ~/code/click/elements/local/PSPQ`), then configure Click to enable local elements (`./configure --enable-local ...`), and make sure to run `make elemlist`, now Click should have our element compiled and ready to be used.
+
 ## QOSSender Configuration
 <html>
 	
